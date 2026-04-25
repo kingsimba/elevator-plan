@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>电梯方案一页图解版</title>
+    <style>
+        body {
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 20px;
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            display: flex;
+            justify-content: center;
+        }
+        .poster {
+            width: 297mm;
+            height: 210mm;
+            background: #ffffff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: row;
+            box-sizing: border-box;
+            padding: 15mm;
+            gap: 15mm;
+            overflow: hidden;
+            position: relative;
+        }
+        @media print {
+            body { padding: 0; background: white; display: block; }
+            .poster { box-shadow: none; margin: 0; width: 297mm; height: 210mm; }
+            @page { size: A4 landscape; margin: 0; }
+        }
+        /* Columns */
+        .col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        /* Left Column */
+        .header h1 {
+            color: #174c8c;
+            font-size: 34px;
+            margin: 0 0 10px 0;
+            line-height: 1.2;
+            letter-spacing: 2px;
+        }
+        .header p {
+            color: #1b7a43;
+            font-size: 18px;
+            margin: 0 0 20px 0;
+            font-weight: bold;
+        }
+        .icons-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+        .icon-box {
+            text-align: center;
+            font-size: 14px;
+            color: #333;
+            font-weight: bold;
+        }
+        .icon-circle {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: #f2f7fc;
+            border: 2px solid #b5d1f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            margin: 0 auto 8px auto;
+            color: #174c8c;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .desc-text {
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            background: #f9f9f9;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border-left: 4px solid #174c8c;
+        }
+        .card-row {
+            display: flex;
+            gap: 15px;
+            flex: 1;
+        }
+        .card {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .card-blue { border: 1px solid #b5d1f0; background: #f2f7fc; }
+        .card-green { border: 1px solid #b5e0c9; background: #f0f9f4; }
+        .card-header {
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+        .card-blue .card-header { background: #174c8c; }
+        .card-green .card-header { background: #1b7a43; }
+        .card-body {
+            padding: 18px;
+            font-size: 14px;
+            line-height: 1.9;
+            color: #333;
+        }
+        .card-body ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+        
+        /* Right Column */
+        .section-title {
+            display: flex;
+            align-items: center;
+            color: #174c8c;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0 0 15px 0;
+            border-bottom: 2px solid #174c8c;
+            padding-bottom: 8px;
+        }
+        .section-title span { margin-right: 8px; font-size: 22px; }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 15px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .data-table th {
+            padding: 12px;
+            color: white;
+            font-weight: bold;
+        }
+        .data-table tr th:nth-child(1),
+        .data-table tr th:nth-child(2) { background: #174c8c; }
+        .data-table tr th:nth-child(3),
+        .data-table tr th:nth-child(4) { background: #1b7a43; border-left: 1px solid rgba(255,255,255,0.2); }
+        
+        .data-table td {
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            font-weight: 500;
+        }
+        .data-table tbody tr:nth-child(even) { background: #f8f9fa; }
+        .data-table tbody tr:nth-child(odd) { background: #ffffff; }
+        
+        .choose-row {
+            display: flex;
+            gap: 15px;
+        }
+        .choose-card {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .choose-header {
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 17px;
+        }
+        .choose-blue .choose-header { background: #174c8c; }
+        .choose-green .choose-header { background: #1b7a43; }
+        .choose-body {
+            padding: 18px 15px;
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            font-size: 14px;
+            line-height: 1.6;
+            height: 120px;
+        }
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .check-icon {
+            color: #1b7a43;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .footer-note {
+            margin-top: auto;
+            text-align: center;
+            color: #174c8c;
+            padding: 12px;
+            background: #e9f2fb;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: bold;
+            border: 1px dashed #b5d1f0;
+        }
+
+        .highlight-red { color: #d32f2f; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="poster">
+        <!-- 左侧 -->
+        <div class="col">
+            <div class="header">
+                <h1>老旧小区加装电梯 轻松上下</h1>
+                <p>两种方案/参与方式，满足多样化需求</p>
+            </div>
+            
+            <div class="icons-row">
+                <div class="icon-box">
+                    <div class="icon-circle">🏠</div>
+                    <div>平层入户</div>
+                </div>
+                <div class="icon-box">
+                    <div class="icon-circle">💰</div>
+                    <div>政府补贴</div>
+                </div>
+                <div class="icon-box">
+                    <div class="icon-circle">☀</div>
+                    <div>采光保障</div>
+                </div>
+                <div class="icon-box">
+                    <div class="icon-circle">🔒</div>
+                    <div>智能门禁</div>
+                </div>
+            </div>
+
+            <div class="desc-text">
+                我们的加装电梯方案，兼顾了成本筹措与工程品质。<br>1号楼采取<strong>北面加装、平层入户</strong>方式（厨房阳台改造），让大家出电梯即到家，让出行更智能、更轻松地随您所需。
+            </div>
+
+            <div class="card-row">
+                <div class="card card-blue">
+                    <div class="card-header">设计参数：规格结构</div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>井道尺寸：</strong>2.3m × 2.15m</li>
+                            <li><strong>轿厢尺寸：</strong>1.35m × 1.4m</li>
+                            <li><strong>承载标准：</strong>800kg（约10人）</li>
+                            <li><strong>连廊设计：</strong>封闭大玻璃/开放式栏杆，极大保障日照与采光</li>
+                            <li><strong>智能安防：</strong>刷卡/人脸识别乘梯，安全防尾随</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card card-green">
+                    <div class="card-header">资金方案：补贴与众筹</div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>总预算估算：</strong>约 100 万元</li>
+                            <li><strong>政府统筹补贴：</strong><span class="highlight-red">48 万元</span></li>
+                            <li><strong>参与户需众筹：</strong>约 52 万元</li>
+                            <li><strong>运行与维保费：</strong>首年由厂家免费维保；次年起产生杂费约 6000元/年(按层按比例收取)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧 -->
+        <div class="col">
+            <div class="section-title">
+                <span>📊</span> 筹资与维保费分摊明细表
+            </div>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th colspan="2">众筹统配参考与比例</th>
+                        <th colspan="2">具体户均费用测算</th>
+                    </tr>
+                    <tr>
+                        <th style="background: #1e5fa8; border-top: 1px solid rgba(255,255,255,0.2);">楼层</th>
+                        <th style="background: #1e5fa8; border-top: 1px solid rgba(255,255,255,0.2);">指导比例</th>
+                        <th style="background: #219351; border-top: 1px solid rgba(255,255,255,0.2); border-left: 1px solid rgba(255,255,255,0.2);">建安众筹额(万/户)</th>
+                        <th style="background: #219351; border-top: 1px solid rgba(255,255,255,0.2);">维保运行费(年/户)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>一层</td>
+                        <td>0%</td>
+                        <td>0 万</td>
+                        <td>0 元</td>
+                    </tr>
+                    <tr>
+                        <td>二层</td>
+                        <td>5%</td>
+                        <td>1.3 万</td>
+                        <td>120 元</td>
+                    </tr>
+                    <tr>
+                        <td>三层</td>
+                        <td>12%</td>
+                        <td>3.12 万</td>
+                        <td>360 元</td>
+                    </tr>
+                    <tr>
+                        <td>四层</td>
+                        <td>20%</td>
+                        <td>5.2 万</td>
+                        <td>630 元</td>
+                    </tr>
+                    <tr>
+                        <td>五层</td>
+                        <td>28%</td>
+                        <td>7.28 万</td>
+                        <td>870 元</td>
+                    </tr>
+                    <tr>
+                        <td>六层</td>
+                        <td>35%</td>
+                        <td class="highlight-red">9.1 万</td>
+                        <td class="highlight-red">1020 元</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="section-title" style="margin-top: 25px;">
+                <span>🗳️</span> 意愿表决如何选择？
+            </div>
+            <div class="choose-row">
+                <div class="choose-card choose-blue">
+                    <div class="choose-header">选择“同意并参与”，如果您：</div>
+                    <div class="choose-body">
+                        <div class="check-item">
+                            <span class="check-icon">☑</span>
+                            <span>按比例出资众筹，配合厨房阳台门窗改造。</span>
+                        </div>
+                        <div class="check-item">
+                            <span class="check-icon">☑</span>
+                            <span>立刻获得专属门禁卡，享受每日出入平层乘用权。</span>
+                        </div>
+                        <div class="check-item">
+                            <span class="check-icon">☑</span>
+                            <span>期望极大提升生活便捷度，以及房屋附加价值。</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="choose-card choose-green">
+                    <div class="choose-header">选择“不反对（不参与）”，如果您：</div>
+                    <div class="choose-body">
+                        <div class="check-item">
+                            <span class="check-icon">☑</span>
+                            <span>不想出资（原阳台保留原状，暂无电梯乘用权）。</span>
+                        </div>
+                        <div class="check-item">
+                            <span class="check-icon">☑</span>
+                            <span>期望保留日后加入的权利。</span>
+                        </div>
+                        <div class="check-item">
+                            <span class="check-icon">☑</span>
+                            <span>当未来有需求时，补齐最初按施工摊派费用方可使用。</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-note">
+                ♡ 贴心提示：本单元若“反对”户数超过3户即无法安装，请大家友好沟通~
+            </div>
+        </div>
+    </div>
+</body>
+</html>
