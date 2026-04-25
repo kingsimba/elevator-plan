@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <title>电梯方案一页图解版</title>
@@ -12,11 +13,12 @@
             display: flex;
             justify-content: center;
         }
+
         .poster {
             width: 297mm;
             height: 210mm;
             background: #ffffff;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: row;
             box-sizing: border-box;
@@ -25,11 +27,27 @@
             overflow: hidden;
             position: relative;
         }
+
         @media print {
-            body { padding: 0; background: white; display: block; }
-            .poster { box-shadow: none; margin: 0; width: 297mm; height: 210mm; }
-            @page { size: A4 landscape; margin: 0; }
+            body {
+                padding: 0;
+                background: white;
+                display: block;
+            }
+
+            .poster {
+                box-shadow: none;
+                margin: 0;
+                width: 297mm;
+                height: 210mm;
+            }
+
+            @page {
+                size: A4 landscape;
+                margin: 0;
+            }
         }
+
         /* Columns */
         .col {
             flex: 1;
@@ -37,6 +55,7 @@
             flex-direction: column;
             position: relative;
         }
+
         /* Left Column */
         .header h1 {
             color: #174c8c;
@@ -45,24 +64,28 @@
             line-height: 1.2;
             letter-spacing: 2px;
         }
+
         .header p {
             color: #1b7a43;
             font-size: 18px;
             margin: 0 0 20px 0;
             font-weight: bold;
         }
+
         .icons-row {
             display: flex;
             justify-content: space-between;
             margin-bottom: 20px;
             padding: 0 10px;
         }
+
         .icon-box {
             text-align: center;
             font-size: 14px;
             color: #333;
             font-weight: bold;
         }
+
         .icon-circle {
             width: 55px;
             height: 55px;
@@ -75,8 +98,9 @@
             font-size: 26px;
             margin: 0 auto 8px auto;
             color: #174c8c;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
+
         .desc-text {
             font-size: 14px;
             color: #444;
@@ -87,21 +111,32 @@
             border-radius: 6px;
             border-left: 4px solid #174c8c;
         }
+
         .card-row {
             display: flex;
             gap: 15px;
             flex: 1;
         }
+
         .card {
             flex: 1;
             border-radius: 8px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
         }
-        .card-blue { border: 1px solid #b5d1f0; background: #f2f7fc; }
-        .card-green { border: 1px solid #b5e0c9; background: #f0f9f4; }
+
+        .card-blue {
+            border: 1px solid #b5d1f0;
+            background: #f2f7fc;
+        }
+
+        .card-green {
+            border: 1px solid #b5e0c9;
+            background: #f0f9f4;
+        }
+
         .card-header {
             color: white;
             padding: 12px;
@@ -110,19 +145,27 @@
             font-size: 18px;
             letter-spacing: 1px;
         }
-        .card-blue .card-header { background: #174c8c; }
-        .card-green .card-header { background: #1b7a43; }
+
+        .card-blue .card-header {
+            background: #174c8c;
+        }
+
+        .card-green .card-header {
+            background: #1b7a43;
+        }
+
         .card-body {
             padding: 18px;
             font-size: 14px;
             line-height: 1.9;
             color: #333;
         }
+
         .card-body ul {
             padding-left: 20px;
             margin: 0;
         }
-        
+
         /* Right Column */
         .section-title {
             display: flex;
@@ -134,47 +177,67 @@
             border-bottom: 2px solid #174c8c;
             padding-bottom: 8px;
         }
-        .section-title span { margin-right: 8px; font-size: 22px; }
-        
+
+        .section-title span {
+            margin-right: 8px;
+            font-size: 22px;
+        }
+
         .data-table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 25px;
             text-align: center;
-            font-size: 15px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            font-size: 13px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
             border-radius: 8px;
             overflow: hidden;
         }
+
         .data-table th {
-            padding: 12px;
+            padding: 8px;
             color: white;
             font-weight: bold;
         }
+
         .data-table tr th:nth-child(1),
-        .data-table tr th:nth-child(2) { background: #174c8c; }
+        .data-table tr th:nth-child(2) {
+            background: #174c8c;
+        }
+
         .data-table tr th:nth-child(3),
-        .data-table tr th:nth-child(4) { background: #1b7a43; border-left: 1px solid rgba(255,255,255,0.2); }
-        
+        .data-table tr th:nth-child(4) {
+            background: #1b7a43;
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
         .data-table td {
-            padding: 12px;
+            padding: 8px;
             border: 1px solid #e0e0e0;
             color: #333;
             font-weight: 500;
         }
-        .data-table tbody tr:nth-child(even) { background: #f8f9fa; }
-        .data-table tbody tr:nth-child(odd) { background: #ffffff; }
-        
+
+        .data-table tbody tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .data-table tbody tr:nth-child(odd) {
+            background: #ffffff;
+        }
+
         .choose-row {
             display: flex;
             gap: 15px;
         }
+
         .choose-card {
             flex: 1;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
         }
+
         .choose-header {
             color: white;
             padding: 12px;
@@ -182,8 +245,15 @@
             font-weight: bold;
             font-size: 17px;
         }
-        .choose-blue .choose-header { background: #174c8c; }
-        .choose-green .choose-header { background: #1b7a43; }
+
+        .choose-blue .choose-header {
+            background: #174c8c;
+        }
+
+        .choose-green .choose-header {
+            background: #1b7a43;
+        }
+
         .choose-body {
             padding: 18px 15px;
             background: #ffffff;
@@ -194,18 +264,20 @@
             line-height: 1.6;
             height: 120px;
         }
+
         .check-item {
             display: flex;
             align-items: flex-start;
             gap: 10px;
             margin-bottom: 12px;
         }
+
         .check-icon {
             color: #1b7a43;
             font-weight: bold;
             font-size: 16px;
         }
-        
+
         .footer-note {
             margin-top: auto;
             text-align: center;
@@ -218,9 +290,13 @@
             border: 1px dashed #b5d1f0;
         }
 
-        .highlight-red { color: #d32f2f; font-weight: bold; }
+        .highlight-red {
+            color: #d32f2f;
+            font-weight: bold;
+        }
     </style>
 </head>
+
 <body>
     <div class="poster">
         <!-- 左侧 -->
@@ -229,7 +305,7 @@
                 <h1>老旧小区加装电梯 轻松上下</h1>
                 <p>两种方案/参与方式，满足多样化需求</p>
             </div>
-            
+
             <div class="icons-row">
                 <div class="icon-box">
                     <div class="icon-circle">🏠</div>
@@ -285,7 +361,7 @@
             <div class="section-title">
                 <span>📊</span> 筹资与维保费分摊明细表
             </div>
-            
+
             <table class="data-table">
                 <thead>
                     <tr>
@@ -295,7 +371,9 @@
                     <tr>
                         <th style="background: #1e5fa8; border-top: 1px solid rgba(255,255,255,0.2);">楼层</th>
                         <th style="background: #1e5fa8; border-top: 1px solid rgba(255,255,255,0.2);">指导比例</th>
-                        <th style="background: #219351; border-top: 1px solid rgba(255,255,255,0.2); border-left: 1px solid rgba(255,255,255,0.2);">建安众筹额(万/户)</th>
+                        <th
+                            style="background: #219351; border-top: 1px solid rgba(255,255,255,0.2); border-left: 1px solid rgba(255,255,255,0.2);">
+                            建安众筹额(万/户)</th>
                         <th style="background: #219351; border-top: 1px solid rgba(255,255,255,0.2);">维保运行费(年/户)</th>
                     </tr>
                 </thead>
@@ -385,4 +463,5 @@
         </div>
     </div>
 </body>
+
 </html>
